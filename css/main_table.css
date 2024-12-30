@@ -1,0 +1,82 @@
+
+.resp-tab {
+  border-radius: 5px;
+  font-weight: normal;
+  border: none;
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 100%;
+  white-space: nowrap;
+  background-color: rgb(210, 226, 233);
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2 );	
+}
+.resp-tab td, .resp-tab th {
+  /* text-align: center; */
+  padding: 5px;
+font-size: 14px;
+border: none;
+font-family: Verdana, sans-serif;
+}
+.resp-tab td {
+  font-size: 13px;
+border-right: 1px solid #E6E4E4;
+}
+.resp-tab th {
+  color: #ffffff;
+  background: #85a5c0;
+}
+/* .resp-tab th:nth-child(odd) {
+  background: #337AB7;
+} */
+.resp-tab tr:nth-child(even) {
+  background: #F8F8F8;
+}
+
+
+.fifte_width {
+  width: 50%;
+}
+
+
+.left_text{
+  text-align: left; 
+}
+.center_text{
+  text-align: center; 
+}
+
+/* картинка и текст в одну линию */
+.block {
+  display: flex;
+  align-items: center;
+}
+
+.block img + .block-text {
+  margin-left: 0.5em;
+}
+
+.block .block-text + img {
+  margin-left: 0.5em;
+}
+
+.whatsup_text {
+  margin: 20px;
+  padding: 15px;
+  background: rgb(164, 216, 176);
+  border-radius: 10px;
+  font-size: 15;
+  font-weight: 600;
+  
+}
+
+.whatsup_link {
+margin: 0 auto;
+  width: 30%;
+  padding: 15px;
+    background: rgb(40, 236, 83);
+    text-align: center;
+  border-radius: 10px;
+  font-size: 20;
+  font-weight: 900;
+
+}
