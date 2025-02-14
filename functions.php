@@ -31,7 +31,7 @@ echo "<td class=\"center_text\"> ".$item['paid']."</td>";
 echo "<td class=\"center_text\"><a href=\"form_for_update_tickets_for_user.php?id={$item['id']}\"> ".$item['count_ticket']."</a></td>"; // количество приобретенных билетоы
 
 echo "<td class=\"center_text\"> ".$item['dop_pole']."</td>";
-echo "<td class=\"center_text\"> ".$item['comment']."</td>";
+echo "<td class=\"center_text low_width\"> ".$item['comment']."</td>";
 echo "<td class=\"center_text\"> "."<a name=\"ankor-".$item['id']."\" href=\"form_for_update_one_user.php?id=".$item['id']."\">
         <img src=\"pics/update_info.jpg\"> </a>"."
         </td>";

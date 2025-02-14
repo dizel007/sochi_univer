@@ -63,7 +63,7 @@ echo <<<HTML
 $all_people
 <br><br>
 <div class = "whatsup_link">
-<a href ="$whatsapp_link" target ="_blank">Отправить поздравление в WhatsUp</a>
+<a href ="$whatsapp_link" target ="_blank">Отправить поздравление в Whatsapp</a>
 </div>
 </div>
 HTML;
@@ -104,7 +104,7 @@ print_users_table($table_data_7);
 
 
 function Get_birthsday_users_for_one_day($pdo, $date) {
-    $stmt = $pdo->prepare("SELECT * FROM `spisok`  WHERE MONTH(`born_date`) = MONTH('$date') AND  DAY(`born_date`) = DAY('$date') ORDER BY `fio` ASC");
+    $stmt = $pdo->prepare("SELECT * FROM `spisok`  WHERE `delete_user` <> 1 AND MONTH(`born_date`) = MONTH('$date') AND  DAY(`born_date`) = DAY('$date') ORDER BY `fio` ASC");
     $stmt->execute([]);
     $table_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 return $table_data ;
