@@ -61,7 +61,7 @@ body {
   
  
 }
-  input {
+  input, select {
     display: block;
     padding: 15px 10px;
     margin-bottom: 10px;

@@ -6,6 +6,7 @@ echo "<table class = \"resp-tab\">";
 echo "<tr>";
 echo "<th> пп </th>";
 echo "<th> ФИО </td>";
+echo "<th><a href=\"make_small_spisok.php\"> ССП </a></td>"; // Дополнительный список 300 человек
 echo "<th> ДР </th>";
 echo "<th> телефон </th>";
 echo "<th> ДВ </th>";
@@ -22,6 +23,7 @@ foreach ($table_data as $item ){
 echo "<tr>";
 echo "<td>$i</td>";
 echo "<td  class=\"left_text\">".$item['fio']."</td>";
+echo "<td class=\"center_text\" >".$item['small_spisok']."</td>";
 echo "<td class=\"center_text\" >".$item['born_date']."</td>";
 echo "<td >".$item['telephon']."</td>";
 echo "<td class=\"center_text\" >".$item['date_vstuplenia']."</td>";

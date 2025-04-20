@@ -24,7 +24,7 @@ $date_vstuplenia = $_GET['date_vstuplenia'];
 $paid = $_GET['paid'];
 $dop_pole = $_GET['dop_pole'];
 $comment = $_GET['comment'];
-
+$small_spisok = $_GET['small_spisok'];
 
 
 
@@ -40,6 +40,7 @@ $comment = $_GET['comment'];
     `date_vstuplenia` = :date_vstuplenia,
     `paid` = :paid,
     `dop_pole` = :dop_pole,
+    `small_spisok` = :small_spisok,
     `comment` = :comment 
     WHERE `id` = $id";
 
@@ -54,7 +55,7 @@ $stmt->execute(array('fio'     => $fio,
                     'date_vstuplenia' => $date_vstuplenia,
                     'paid'   => $paid,
                     'dop_pole'   => $dop_pole,
-
+                    'small_spisok'   => $small_spisok,
                     'comment'   => $comment,
 
 ));
@@ -79,6 +80,7 @@ $city = $data_user[0]['city'];
 $date_vstuplenia = $data_user[0]['date_vstuplenia'];
 $paid = $data_user[0]['paid'];
 $dop_pole = $data_user[0]['dop_pole'];
+$small_spisok = $data_user[0]['small_spisok'];
 $comment = $data_user[0]['comment'];
 
 echo <<<HTML
@@ -92,9 +94,24 @@ echo <<<HTML
   <input type="hidden"  name="priz"  value = "ready_for_update">
    
     <p class=" update_user title"> Редактирование данных участника</p>
-     <div class="label_text">ФИО</div>
+    <div class="label_text">ФИО</div>
     <input type="text" placeholder="ФИО"  name="fio"  value = "$fio" autofocus/>
-   
+
+    
+    <div class="label_text">Добавить участника в мини список 300 человек</div>
+    <select name="small_spisok">
+HTML;
+// Подставляем выбранно значение в срочку
+if ($small_spisok == 1) {
+ echo   "<option selected value = \"1\" >ДА</option>";
+ echo    "<option value = \"0\">НЕТ</option>";
+} else {
+  echo   "<option  value = \"1\" >ДА</option>";
+  echo    "<option selected value = \"0\">НЕТ</option>";
+}
+
+echo <<<HTML
+    </select>
 
     <i class="fa fa-user">Дата рождения</i>
     <input type="date" placeholder="Дата рождения" name="born_date" value = "$born_date"/>
