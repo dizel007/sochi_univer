@@ -12,10 +12,13 @@ require_once 'PHPExcel-1.8/Classes/PHPExcel/IOFactory.php';
     $sheet->setTitle('Список НУ');
     $sheet->getColumnDimension("A")->setWidth(7);
     $sheet->getColumnDimension("B")->setWidth(78);
-    
+      $sheet->getColumnDimension("C")->setWidth(18);
+      $sheet->getColumnDimension("D")->setWidth(18);
 
     $sheet->setCellValue("A1", "пп");
     $sheet->setCellValue("B1", "ФИО");
+    $sheet->setCellValue("C1", "дата рождения");
+    $sheet->setCellValue("D1", "телефон");
     
 $i=2;
 // делаем выборку всех участников
@@ -23,11 +26,15 @@ $stmt = $pdo->prepare("SELECT * FROM `spisok` WHERE `delete_user` <> 1 ORDER BY 
 $stmt->execute([]);
 $table_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-
+// echo "<pre>";
+// print_r($table_data);
+// die();
 $pp_number = 1;
 foreach ($table_data as $user) {
     $sheet->setCellValue("A".$i, $pp_number);
     $sheet->setCellValue("B".$i, $user['fio']);
+    $sheet->setCellValue("C".$i, $user['born_date']);
+    $sheet->setCellValue("D".$i, $user['telephon']);
     $pp_number ++;
 $i++;
 }
@@ -43,7 +50,7 @@ $border = array(
 	)
 );
  $i--;
-$sheet->getStyle("A1:B".$i)->applyFromArray($border);
+$sheet->getStyle("A1:D".$i)->applyFromArray($border);
 
 
 
