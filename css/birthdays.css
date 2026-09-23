@@ -1,0 +1,175 @@
+/* birthdays.css — стили для страницы дней рождения */
+
+/* ---------- Форма поиска ---------- */
+.form-table {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    background: #f8faff;
+    border-radius: 14px;
+    border: 1px solid #e6edf6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 24px;
+    padding: 8px 0;
+}
+
+.form-table td {
+    padding: 10px 16px;
+    border: none;
+    vertical-align: middle;
+    background: transparent !important;
+}
+
+.form-table input[type="date"] {
+    padding: 6px 12px;
+    border: 1px solid #d0d9e8;
+    border-radius: 30px;
+    font-size: 14px;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-table input[type="date"]:focus {
+    outline: none;
+    border-color: #2c3e7a;
+    box-shadow: 0 0 0 3px rgba(44, 62, 122, 0.15);
+}
+
+.form-table input[type="submit"] {
+    background: #2c3e7a;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 6px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.form-table input[type="submit"]:hover {
+    background: #1a2a5c;
+    transform: scale(1.02);
+}
+
+.form-table a {
+    display: inline-block;
+    background: #eef4ff;
+    padding: 6px 16px;
+    border-radius: 30px;
+    color: #1a2a5c;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.15s, box-shadow 0.15s;
+}
+
+.form-table a:hover {
+    background: #dce6ff;
+    box-shadow: 0 2px 6px rgba(26, 42, 92, 0.1);
+    text-decoration: none;
+}
+
+/* ---------- Заголовки ---------- */
+.page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a2a5c;
+    margin: 30px 0 16px 0;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #2c3e7a;
+    display: inline-block;
+}
+
+/* ---------- Блок поздравлений ---------- */
+.whatsup_text {
+    background: #f0f7ff;
+    border-left: 6px solid #2c3e7a;
+    border-radius: 12px;
+    padding: 18px 24px;
+    margin: 20px 0 30px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1e293b;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.whatsup_link {
+    margin-top: 12px;
+}
+
+.whatsup_link a {
+    display: inline-block;
+    background: #25d366;
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 40px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+}
+
+.whatsup_link a:hover {
+    background: #1ebe5c;
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+/* ---------- Ссылка "Скачать" рядом с заголовком месяца ---------- */
+.download-link {
+    display: inline-block;
+    margin-left: 20px;
+    background: #2c3e7a;
+    color: #fff !important;
+    padding: 4px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.download-link:hover {
+    background: #1a2a5c;
+    text-decoration: none;
+}
+
+/* ---------- Адаптивность ---------- */
+@media (max-width: 768px) {
+    .form-table td {
+        display: block;
+        width: 100%;
+        padding: 6px 12px;
+        text-align: center;
+    }
+    .form-table td:first-child {
+        padding-top: 12px;
+    }
+    .form-table td:last-child {
+        padding-bottom: 12px;
+    }
+    .form-table input[type="date"] {
+        width: 90%;
+        max-width: 250px;
+    }
+    .page-title {
+        font-size: 20px;
+    }
+    .whatsup_text {
+        padding: 14px 16px;
+        font-size: 14px;
+    }
+    .whatsup_link a {
+        padding: 8px 18px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 18px;
+    }
+    .form-table input[type="submit"] {
+        width: 100%;
+        max-width: 200px;
+    }
+}

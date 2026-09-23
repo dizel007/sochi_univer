@@ -1,90 +1,295 @@
+/* main_table.css — современный дизайн для таблицы участников */
 
+/* Общие сбросы и базовые настройки */
 .resp-tab {
-  border-radius: 5px;
-  font-weight: normal;
-  border: none;
-  border-collapse: collapse;
-  width: 100%;
-  max-width: 100%;
-  white-space: nowrap;
-  background-color: rgb(188, 187, 236);
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2 );	
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Inter', 'Segoe UI', Roboto, system-ui, sans-serif;
+    background-color: #ffffff;
+    font-size: 20px;
+    line-height: 1.5;
 }
-.resp-tab td, .resp-tab th {
-  /* text-align: center; */
-  padding: 5px;
-font-size: 14px;
-border: none;
-font-family: Verdana, sans-serif;
 
-hyphens: auto;
-
-}
-.resp-tab td {
-  font-size: 16px;
-  border-right: 1px solid #E6E4E4;
-}
+/* Заголовки */
 .resp-tab th {
-  color: #ffffff;
-  background: #85a5c0;
-}
-/* .resp-tab th:nth-child(odd) {
-  background: #337AB7;
-} */
-.resp-tab tr:nth-child(even) {
-  background: #ececec;
-}
-
-
-.fifte_width {
-  width: 50%;
+    background: linear-gradient(145deg, #2c3e7a, #1a2a5c);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 14px 12px;
+    text-align: left;
+    border: none;
+    white-space: nowrap;
+    font-size: 13px;
 }
 
-
-.left_text{
-  text-align: left; 
-}
-.center_text{
-  text-align: center; 
-}
-
-/* картинка и текст в одну линию */
-.block {
-  display: flex;
-  align-items: center;
+/* Ячейки */
+.resp-tab td {
+    padding: 2px 10px;
+    border: none;
+    border-bottom: 1px solid #eef2f7;
+    color: #1e293b;
+    vertical-align: middle;
+    background-color: #ffffff;
+    transition: background-color 0.15s ease;
 }
 
-.block img + .block-text {
-  margin-left: 0.5em;
+/* Чередование строк (более контрастное) */
+.resp-tab tr:nth-child(even) td {
+    background-color: #d7d9e0;
 }
 
-.block .block-text + img {
-  margin-left: 0.5em;
+/* Hover для строк */
+.resp-tab tr:hover td {
+    background-color: #eef4ff;
+    cursor: default;
 }
 
-.whatsup_text {
-  margin: 20px;
-  padding: 15px;
-  background: rgb(164, 216, 176);
-  border-radius: 10px;
-  font-size: 15;
-  font-weight: 600;
-  
+/* Выравнивание текста */
+.left_text {
+    text-align: left;
 }
-
-.whatsup_link {
-margin: 0 auto;
-  width: 30%;
-  padding: 15px;
-    background: rgb(40, 236, 83);
+.center_text {
     text-align: center;
-  border-radius: 10px;
-  font-size: 20;
-  font-weight: 900;
-
 }
 
+/* Дополнительные классы для ширины (если нужны) */
 .low_width {
-  /* max-width: 200px; */
-  white-space: wrap;
+    max-width: 200px;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Ссылки внутри таблицы (иконки) */
+.resp-tab a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a2a5c;
+    text-decoration: none;
+    transition: transform 0.1s, opacity 0.2s;
+}
+.resp-tab a:hover {
+    opacity: 0.7;
+    transform: scale(1.05);
+}
+
+/* Иконки внутри ссылок */
+.resp-tab a img {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: transparent;
+    object-fit: contain;
+}
+
+/* Стили для блока со ссылками (в шапке таблицы) */
+.block {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    padding: 4px 12px 4px 8px;
+    border-radius: 30px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    transition: background 0.15s, box-shadow 0.15s;
+    font-weight: 500;
+    color: #1a2a5c;
+}
+.block:hover {
+    background: #eef4ff;
+    box-shadow: 0 2px 8px rgba(26, 42, 92, 0.12);
+}
+.block img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f0f4ff;
+    padding: 4px;
+}
+.block .block-text {
+    margin-left: 2px;
+}
+
+/* Стили для самой верхней строки с информацией и ссылками (вне таблицы) */
+/* Они находятся в отдельной таблице (две таблицы на странице). 
+   Чтобы не конфликтовать, добавим стили для первой таблицы-шапки */
+table.resp-tab:first-of-type {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+    background: #f8faff;
+    border-radius: 14px;
+    border: 1px solid #e6edf6;
+}
+table.resp-tab:first-of-type td {
+    background: #f8faff !important;
+    border-bottom: none;
+    padding: 10px 16px;
+    font-weight: 500;
+    color: #1e293b;
+}
+table.resp-tab:first-of-type td a {
+    color: #1a2a5c;
+    text-decoration: none;
+    font-weight: 500;
+}
+table.resp-tab:first-of-type td a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность: горизонтальный скролл на маленьких экранах */
+@media (max-width: 768px) {
+    .resp-tab {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
+    }
+    .resp-tab td, .resp-tab th {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+    .resp-tab th {
+        font-size: 11px;
+    }
+    .block {
+        padding: 2px 8px;
+        font-size: 13px;
+    }
+    .block img {
+        width: 22px;
+        height: 22px;
+    }
+    /* Шапка-таблица тоже скроллится */
+    table.resp-tab:first-of-type {
+        display: block;
+        overflow-x: auto;
+    }
+    table.resp-tab:first-of-type td {
+        white-space: nowrap;
+    }
+}
+
+/* Для очень узких экранов ещё мельче */
+@media (max-width: 480px) {
+    .resp-tab td, .resp-tab th {
+        padding: 6px 5px;
+        font-size: 12px;
+    }
+    .resp-tab th {
+        font-size: 10px;
+    }
+    .block {
+        font-size: 12px;
+        padding: 2px 6px;
+    }
+    .block img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Дополнительно: стили для «Скачать», «Добавить» и др. — делаем их похожими на кнопки */
+table.resp-tab:first-of-type td a:not(.block) {
+    display: inline-block;
+    background: #eef4ff;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-weight: 500;
+    transition: background 0.15s, box-shadow 0.15s;
+    color: #1a2a5c;
+    text-decoration: none;
+    margin: 0 2px;
+}
+table.resp-tab:first-of-type td a:not(.block):hover {
+    background: #dce6ff;
+    box-shadow: 0 2px 6px rgba(26, 42, 92, 0.1);
+}
+
+/* Стиль для админской надписи (Админ: логин) */
+table.resp-tab:first-of-type td:last-child {
+    font-weight: 600;
+    color: #1a2a5c;
+}
+
+/* Стиль для ссылки в столбце "Билеты" */
+.resp-tab .ticket-link {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #eef4ff;
+    border-radius: 20px;
+    color: #1a2a5c;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+    border: 1px solid transparent;
+}
+
+.resp-tab .ticket-link:hover {
+    background-color: #d4e0ff;
+    box-shadow: 0 2px 8px rgba(26, 42, 92, 0.15);
+    text-decoration: underline;
+    transform: scale(1.02);
+}
+
+.resp-tab .ticket-link:active {
+    transform: scale(0.96);
+}
+
+/* Уменьшаем шрифт и запрещаем перенос для ДР и ДВ */
+.resp-tab .date-cell {
+    font-size: 18x;        /* уменьшаем размер шрифта */
+    white-space: nowrap;     /* запрещаем перенос на новую строку */
+    letter-spacing: 0.02em;  /* небольшое межбуквенное расстояние для читаемости */
+}
+
+/* Поле поиска */
+#searchInput {
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 30px;
+    border: 1px solid #d0d9e8;
+    background: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 160px;
+}
+#searchInput:focus {
+    outline: none;
+    border-color: #2c3e7a;
+    box-shadow: 0 0 0 3px rgba(44, 62, 122, 0.15);
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    #searchInput {
+        width: 120px;
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+}
+
+
+table.resp-tab:first-of-type td:not(:first-child):not(:nth-child(2)) {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+/* Ссылки в заголовках таблицы (например, ССП) */
+.resp-tab th a {
+    color: #ffffff;              /* белый цвет, чтобы контрастировать с тёмным фоном заголовка */
+    text-decoration: underline;  /* подчёркивание, чтобы явно указывать на ссылку */
+    font-weight: 600;            /* полужирный */
+    transition: opacity 0.2s, color 0.2s;
+}
+.resp-tab th a:hover {
+    opacity: 0.8;
+    color: #ffd700;              /* золотистый при наведении для дополнительной заметности */
+    text-decoration: none;
 }

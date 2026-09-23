@@ -8,8 +8,11 @@ require_once 'functions.php';
 
 echo <<<HTML
  <link rel="stylesheet" href="css/main_table.css">
+ <link rel="stylesheet" href="css/birthdays.css">
 HTML;
 
+echo "<table class = \"resp-tab\">";
+echo "</table>";
 
 if (isset($_GET['born_date'])) {
     $date = $_GET['born_date'];
@@ -25,7 +28,7 @@ $table_data = Get_birthsday_users_for_one_day($pdo, $date);
 
 
 echo "<form action=\"birthsday_users.php\" method=\"get\">";
-echo "<table class = \"resp-tab\">";
+echo "<table class = \"form-table\">";
 echo "<tr>";
 echo "<td> Дата рождения </td>";
 echo  "<td><input size =\"45\" class=\"\" type=\"date\" name=\"born_date\" value=" . "\"$date\"" . "></td>";
@@ -41,16 +44,17 @@ echo "</form>";
 
 
 
-echo "<h1>День Рождения $date</h1>";
+echo "<h1 class=\"page-title\">День Рождения $date</h1>";
+
 if (isset($table_data[0])) {
     print_users_table($table_data);
-    $all_people ='Сегодня мы поздравляем с Днем рождения следующих участников  Народного Университета : ';
+    $all_people ='Сегодня мы поздравляем с Днем рождения следующих участников  Народного Университета :<br> ';
 
 foreach ($table_data as $users) {
     $uchastniki[] = $users['fio'];
     
 }
-$string_uchastniki = implode(', ',$uchastniki);
+$string_uchastniki = implode(',<br> ',$uchastniki);
 $all_people = $all_people.  $string_uchastniki;
 // echo "<h1>$all_people</h1>";
 $text_for_whatsup_link = urlencode($all_people);
@@ -59,17 +63,23 @@ $text_for_whatsup_link = urlencode($all_people);
 $whatsapp_link = "https://api.whatsapp.com/send?text=$text_for_whatsup_link";
 
 echo <<<HTML
-<div class = "whatsup_text">
-$all_people
-<br><br>
-<div class = "whatsup_link">
-<a href ="$whatsapp_link" target ="_blank">Отправить поздравление в Whatsapp</a>
-</div>
+<div class="whatsup_text">
+    $all_people
+    <br><br>
+    <div class="whatsup_link">
+        <a href="$whatsapp_link" target="_blank">Отправить поздравление в WhatsApp</a>
+    </div>
 </div>
 HTML;
 
 } else  {
-    echo "В БАЗЕ ДАННЫХ НЕТ УЧАСТНИКОВ С ДНЕМ РОЖДЕНИЯ $date";
+    echo <<<HTML
+<div class="whatsup_text">
+     <div class="whatsup_link">
+        В БАЗЕ ДАННЫХ НЕТ УЧАСТНИКОВ С ДНЕМ РОЖДЕНИЯ $date
+    </div>
+</div>
+HTML;
 }
 
 
@@ -80,12 +90,9 @@ HTML;
 
 
 
-
 $start_date = date('Y-m-d', strtotime($date . ' +1 day'));
 $stop_date = date('Y-m-d', strtotime($date . ' +7 day'));
-echo "<h1>Дни Рождения на следующие 7 дней с ($start_date) по ($stop_date)</h1>";
-
-
+echo "<h1 class=\"page-title\">Дни Рождения на следующие 7 дней с ($start_date) по ($stop_date)</h1>";
 
 for ($i=1; $i<=7; $i++) {
     $stop_date = date('Y-m-d', strtotime($date . '+'.$i.' day'));
@@ -102,7 +109,45 @@ foreach ($table_data_temp as $temp_item) {
 print_users_table($table_data_7);
 
 
+/******************************************************************************************
+ *  ДР на месяц
+ *********************************************************************************************/
 
+unset ($table_data_7);
+unset ($table_data_temp);
+unset ($temp_item);
+
+$Year = date('Y');
+$month =  date('m', strtotime('+1 month'));
+
+$day_count = cal_days_in_month(CAL_GREGORIAN, $month, date('Y')); // 31
+
+
+
+$start_date = date('Y')."-".$month."-01";
+$stop_date = date('Y')."-".$month."-".$day_count;
+
+echo "<h1 class=\"page-title\">Дни Рождения на следующий месяц с ($start_date) по ($stop_date) <a href=\"excel_spisok_month_birthdays.php\" class=\"download-link\">Скачать</a></h1>";
+
+
+for ($i = 1; $i <= $day_count; $i++) {
+    $one_date = date('Y')."-".$month."-".$i;
+    $table_data_temp[] = Get_birthsday_users_for_one_day($pdo, $one_date);
+}
+
+foreach ($table_data_temp as $temp_item) {
+    foreach($temp_item as $item) {
+        $table_data_7[] = $item;
+    }
+}
+// echo  "<pre>";                                                    
+// print_r($table_data_7);
+print_users_table($table_data_7);
+
+
+/***************************
+ * выбиаем именниннокв
+ **********************/
 function Get_birthsday_users_for_one_day($pdo, $date) {
     $stmt = $pdo->prepare("SELECT * FROM `spisok`  WHERE `delete_user` <> 1 AND MONTH(`born_date`) = MONTH('$date') AND  DAY(`born_date`) = DAY('$date') ORDER BY `fio` ASC");
     $stmt->execute([]);

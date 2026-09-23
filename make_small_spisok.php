@@ -8,9 +8,16 @@ $stmt->execute([]);
 $table_data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
+
+echo "<table class = \"resp-tab\">";
+echo "</table>";
+
+
 echo <<<HTML
  <link rel="stylesheet" href="css/main_table.css">
 HTML;
+
+
 // echo "<pre>";
 // print_r($table_data[0]);
 
